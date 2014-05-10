@@ -37,8 +37,8 @@
          int I,J,K,L,N,PSTAR;
 
       for(int i=0;i<N;i++)
-         PERMUTATION(i) = i; 
-  
+         PERMUTATION(i) = i;
+
       if (N<=1) return;
 //
 //     Carry out the heap sort on the permutation key.
@@ -46,7 +46,7 @@
       L = 1+N/2;
       K = N;
       do {
-         if (L>1){ 
+         if (L>1){
             L = L-1;
             PSTAR = PERMUTATION[ L ];
          }
@@ -54,7 +54,7 @@
             PSTAR = PERMUTATION[K];
             PERMUTATION[K] = PERMUTATION[1];
             K = K-1;
-            if (K==1){ 
+            if (K==1){
                PERMUTATION[1] = PSTAR;
                return;
             }
@@ -64,21 +64,21 @@
          J = L + L;
          while (J<=K){
             if (J<K){
-               if ( LIST[ PERMUTATION[J]] < LIST[PERMUTATION[J+1]] ) 
+               if ( LIST[ PERMUTATION[J]] < LIST[PERMUTATION[J+1]] )
                   J = J+1;
-            } 
+            }
             if ( LIST[ PSTAR ] < LIST[ PERMUTATION[ J ]] ){
                PERMUTATION(I) = PERMUTATION(J)
                I = J;
                J = J+J;
-            }  
+            }
             else
                J = K+1;
 
          }
          PERMUTATION[I] = PSTAR;
       } while(true);
-   }   
+   }
 
 ///////////////////////////////////////////////////////////////////
       double POISSON_LOGLIKELIHOOD(double mean, int k){
@@ -89,9 +89,9 @@
 ///////////////////////////////////////////////////////////////////
       double POISSON_TAIL(double mean,int k){
            return STANDARD_GAMMA((double) k, mean);
-      }    
+      }
 ///////////////////////////////////////////////////////////////////
-      
+
       double LOG_POISSON_TAIL(double mean, int k){
 //
 //     This function returns the log (base 10) of the Poisson tail
@@ -100,14 +100,14 @@
        if ( (mean >= ONE) && ((k-mean) > SIX * sqrt(mean))) {
           double a = k + ONE;
           double b = k + TWO;
-          double c = -mean + k * log(mean) - GAMLOG(a) + 
+          double c = -mean + k * log(mean) - GAMLOG(a) +
                      log(ONE + mean * b / (a * (b - mean)));
           return  c / log(TEN);
-       } 
+       }
        else
           return log10( POISSON_TAIL(mean,k));
-       } 
-    
+       }
+
       double STANDARD_GAMMA(double a, double k){
 //
 //     This routine returns the gamma distribution function with shape
@@ -116,23 +116,23 @@
           int N;
           double  res, an, bn, cn, dn, pn, sum, term;
 //
-          if ((k <= ZERO) || ( a <= ZERO)) 
+          if ((k <= ZERO) || ( a <= ZERO))
              return ZERO;
           else
              if ( k <= a + ONE ) {
 //
 //     Use the power series expansion.
-// 
+//
                  term = exp(-k + a * log(k) - GAMLOG(a + ONE));
                  res = term;
                  for(int i=1;i<=100;i++){
                    term = term * k /(a + i);
                    sum = res + term;
-                   if ((term / sum) < 1.0E-8 ) 
+                   if ((term / sum) < 1.0E-8 )
                       return res;
                    res = sum;
                  }
-             } 
+             }
              else{
 //
 //     Use the continued fraction expansion.
@@ -145,13 +145,13 @@
                an = -i*(i-a);
                bn = bn + TWO;
                cn = cn + an / cn;
-               if ( abs(cn) < 1.0E-30) 
+               if ( abs(cn) < 1.0E-30)
                    cn = 1.0E-30;
                dn = bn + an * dn;
-               if (abs(dn) < 1.0E-30 ) 
+               if (abs(dn) < 1.0E-30 )
                    dn = 1.0E-30;
                dn = ONE / dn;
-               pn = cn * dn; 
+               pn = cn * dn;
                res = res * pn;
                if (abs(pn - ONE) < 1.0E-8){
                   res = ONE - res;
@@ -162,39 +162,40 @@
          return  max(res, ZERO);
       }
 /////////////////////////////////////////////////////////////////////
-      FUNCTION GAMLOG(X)
+      double  GAMLOG(X){
 //
 //     This routine computes log(gamma(X)) via a recurrence relation
-//     and Stirling's formula. 
+//     and Stirling's formula.
 //
-      IMPLICIT NONE
-      INTEGER :: I,N
-      REAL(KIND=DBLE) :: F,GAMLOG,X,Y
+
+      int i,n;
+      double f,res,x,y;
 //
 //     Compute gamma as a factorial for small integer arguments.
 //
-      Y = X-ONE
-      N = FLOOR(Y)
-      IF (Y-N<=ZERO.AND.N<=TWO*TEN) THEN
-         Y = MAX(N,1)
-         DO I = N-1,2,-1
-            Y = Y*REAL(I,KIND=DBLE)
-         END DO
-         GAMLOG = LOG(Y)
-//
+      y = x - ONE;
+      n = floor(y);
+      if (( (y-n) <= ZERO) && (n <= TWO * TEN) ) {
+         y = max(n,1);
+         for(int i=n-1;i<=2;i--)
+             y = y * i;
+         return  log(y);
+//    }
 //     Compute log gamma via a recurrence relation and Stirling's formula.
 //
-      ELSE
-         F = SQRT(EIGHT*ATAN(ONE))
-         DO WHILE (Y<TEN)
-            Y = Y+ONE
-            F = F/Y
-         END DO
-         GAMLOG = LOG(F)+(Y+ONE/TWO)*LOG(Y)-Y+ONE/(THREE*FOUR*Y)-ONE/(TEN*SIX*SIX*Y**3)
-      END IF
-      END FUNCTION GAMLOG
+      }
+      else {
+         f = sqrt(eight * atan (ONE));
+         while (y<TEN){
+            y = y + ONE;
+            f = f / y;
+         }
+         return  log(f) + ( y + ONE/TWO) * log(y) - y + ONE / (THREE * FOUR * y) - ONE / (TEN * SIX * SIX * y * y *y);
 
-      SUBROUTINE FIT_GRAPH_MODEL(INCOMING_PROPENSITY,OUTGOING_PROPENSITY,ARC_COUNT, &
+      }
+
+
+      void FIT_GRAPH_MODEL( INCOMING_PROPENSITY, OUTGOING_PROPENSITY, ARC_COUNT, &
          LIST,OUTPUT_UNIT)
 //
       IMPLICIT NONE
