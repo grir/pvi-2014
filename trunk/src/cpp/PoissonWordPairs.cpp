@@ -195,11 +195,8 @@
       }
 
 
-      void FIT_GRAPH_MODEL( INCOMING_PROPENSITY, OUTGOING_PROPENSITY, ARC_COUNT, &
-         LIST,OUTPUT_UNIT)
+      void FIT_GRAPH_MODEL(double*  inProp, double* outProp, double** arcCount, int* list, ofstream& fout){
 //
-      IMPLICIT NONE
-      INTEGER :: OUTPUT_UNIT
       CHARACTER(LEN=*), DIMENSION(:) :: LIST
       INTEGER, DIMENSION(:,:) :: ARC_COUNT
       REAL(KIND=DBLE), DIMENSION(:) :: INCOMING_PROPENSITY,OUTGOING_PROPENSITY
