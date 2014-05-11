@@ -4,9 +4,13 @@
  \usepackage[lithuanian]{babel}
  \usepackage[utf8x]{inputenc}
  \usepackage{graphicx}
+ %for eps
+ %\usepackage{epstopdf}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \usepackage{latexsym}
  \usepackage{amssymb}
  \usepackage{amsmath}
+ \usepackage{epsfig}
  \newtheorem{thm}{Teorema}
  \newtheorem{cor}[thm]{Išvada}
  \newtheorem{lem}[thm]{Lema}
@@ -29,7 +33,6 @@
 \author{Irus Grinis${}^{1}$, Feliksas Ivanauskas${}^{1}$, Gediminas Stepanauskas${}^{1}$}
 \date{ }
 %literatūros sąrašas======================================================
-\begin{filecontents*}{x.bib}
 
 %Literatūra
 %
@@ -47,6 +50,28 @@
 %[6] Klein P, Pawson T, Tyers M. Mathematical modeling suggests cooperative interactions between a disordered polyvalent ligand and a single receptor site. Curr Biol. 13(19):1669-78, 2003 
 
 \begin{filecontents*}{x.bib}
+@ARTICLE{Grinis12,
+ author={I. Grinis and F. Ivanauskas and G. Stepanauskas},
+ title={ Some geometric aspects of polyvalent systems modeling},
+ journal={Proc. of the Lithuanian Mathematical Society, Ser. B}, 
+ volume={53},
+ number={1},
+ year={2012},
+ pages={62-67},
+ note={%Note}
+}
+
+@ARTICLE{Fasting12,
+ author={C. Fasting and C.A. Schalley and M. Weber and O. Seitz and S. Hecht and B. Koksch and J. Dernedde and C. Graf and E.W. Knapp and R. Haag},
+ title={ Multivalenz als chemisches Organisations- und Wirkprinzip },
+ journal={Angewandte Chemie}, 
+ volume={124},
+ number={42},
+ year={2012},
+ pages={10622–10650},
+ note={%Note}
+}
+
 @ARTICLE{Mammen98,
  author={J. Mathai Mammen and Seok-Ki Choi and George M. Whitesides},
  title={ Polyvalent Interactions in Biological Systems: Implications for Design and Use of Multivalent Ligands and Inhibitors},
@@ -134,7 +159,7 @@
 
 %\nocite{*}
 \section*{Įvadas}
-Mažos biologinės dalelės (atskiros molekulės, baltymo, DNR,  viruso, bakterijos ar pan.) valentingumas –- atskirų tos pačios rūšies jungčių su kita dalele skaičius (žr., pavyzdžiui, [1], dėl terminologijos). Atskira  jungtis (toliau ją vadinsime tiesiog ryšiu)   tarp dalelių formuojama sąveikos tarp ligando ir receptoriaus pagalba. Sąveikos, kurių valentingumas didesnis už vienetą, vadinamos polivalentinėmis. Mes nagrinėjame kai kuriuos geometrinius  polivalentinių sąveikų modeliavimo aspektus. Valentingumas priklauso nuo daugelio fizikinių, cheminių, geometrinių sąveikaujančiųjų dalelių   savybių. Atskirų polivalentinų sistemų analizei skirta  nemažai dėmesio (\cite{Mammen98}, \cite{Chinlin2000}, \cite{Houseman02},\cite{Klein03}) Šiame darbe  mes pateikiame ligando ir receptoriaus, receptorių paviršiaus, ligandų  komplekso abstrakčius  matematinius modelius, kurie gali būti panaudojami  kai kurių polivalentinių sąveikų analizėje. Straipsnio pabaigoje pateikiame algoritmą, kuris gali būti panaudotas ryšio tarp judančio taškinio ligando ir receptorių paviršiaus susidarymo tikimybei įvertinti.
+Mažos biologinės dalelės (atskiros molekulės, baltymo, DNR,  viruso, bakterijos ar pan.) valentingumas –- atskirų tos pačios rūšies jungčių su kita dalele skaičius (žr., pavyzdžiui, \cite{Grinis12}, dėl terminologijos). Atskira  jungtis (toliau ją vadinsime tiesiog ryšiu)   tarp dalelių formuojama sąveikos tarp ligando ir receptoriaus pagalba. Sąveikos, kurių valentingumas didesnis už vienetą, vadinamos polivalentinėmis. Mes nagrinėjame kai kuriuos geometrinius  polivalentinių sąveikų modeliavimo aspektus. Valentingumas priklauso nuo daugelio fizikinių, cheminių, geometrinių sąveikaujančiųjų dalelių   savybių. Atskirų polivalentinų sistemų analizei skirta  nemažai dėmesio (\cite{Mammen98}, \cite{Chinlin2000}, \cite{Houseman02},\cite{Klein03}) Šiame darbe  mes pateikiame ligando ir receptoriaus, receptorių paviršiaus, ligandų  komplekso abstrakčius  matematinius modelius, kurie gali būti panaudojami  kai kurių polivalentinių sąveikų analizėje. Straipsnio pabaigoje pateikiame algoritmą, kuris gali būti panaudotas ryšio tarp judančio taškinio ligando ir receptorių paviršiaus susidarymo tikimybei įvertinti.
 
 
 \section{Apibrėžimai, matematiniai modeliai ir jų aprašai}
@@ -324,25 +349,7 @@ Tarkime, kad paviršius $ \delta B $ duotas neišreikštine formule $ F(x,y,z) =
 
 Šitą algoritmą galima pritaikyti įvairiems tikslams. Vienas iš jų -- Monte Carlo simuliacijos. Pavyzdžiui, galima generuoti ,,atsitiktines`` atkarpas ir skaičiuoti ryšio susidarymo tikimybę kiekvienai iš jų, o po to įvertinti bendrą ryšio susidarymo tikimybę ,,atsitiktinai judantiems`` ligandams.
 
-%\begin{thebibliography}{100}
-%
-%\bibitem {Mammen98} J. Mathai Mammen, Seok-Ki Choi, and George M. Whitesides. Polyvalent Interactions in Biological Systems: Implications for Design and Use of Multivalent Ligands and Inhibitors. Angewandte Chemie International Edition Volume 37, Issue 20:  2754–2794,  1998.
-%
-%\bibitem {Chinlin2000} Chinlin Guo and Herbert Levine. A statistical mechanics model for receptor clustering, Journal of Biological Physics , 26: 219-234, 2000.
-%
-%\bibitem {Houseman02} Benjamin T.Houseman, Milan Mrksich. Model Systems for Studying Polyvalent Carbohydrate Binding Interactions. Topics in Current Chemistry. 218: 1-44, 2002.
-%
-%\bibitem {Klein03} Klein P, Pawson T, Tyers M. Mathematical modeling suggests cooperative interactions between a disordered polyvalent ligand and a single receptor site. Curr Biol. 13(19):1669-78, 2003. 
-%
-%\bibitem {Lange03} Lange K.  Applied Probability. Springer-Verlag, New York, 2003.
-%
-%\bibitem {Trian10}  De Loera J.A., Rambau J., Santos F. Triangulations.
-%Structures for Algorithms and Application. Springer-Verlag Berlin Heidelberg, 2010.
-%
-%
-%%\bibitem {Meyr06} Meyer B. Jackson. Molecular and Cellular Biophysics.  Cambridge University Press, 2006
-%
-%\end{thebibliography}
+
 \bibliographystyle{plain}
 \bibliography{x}
 \Summary{Some geometric aspects of polyvalent systems modeling }{I.Grinis, F. Ivanauskas and G.Stepanauskas}{ In this paper we consider the interaction of ligands and receptors on the plane and in the  space}{ polyvalent interactions, receptors, ligands, polyvalent systems, mathematical modeling}
