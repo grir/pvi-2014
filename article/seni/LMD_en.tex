@@ -1,0 +1,66 @@
+\documentclass[10pt]{article}
+%Paketai----------------------------------------------
+ \usepackage[L7x]{fontenc}
+ \usepackage[english]{babel}
+ \usepackage{graphicx}
+ \usepackage{latexsym}
+ \usepackage{amssymb}
+ \usepackage{amsmath}
+ \newtheorem{thm}{Theorem}
+ \newtheorem{cor}[thm]{Corollary}
+ \newtheorem{lem}[thm]{Lemma}
+ \newtheorem{prop}[thm]{Proposition}
+ \newtheorem{defn}[thm]{Definition}
+ \newtheorem{rem}[thm]{Remark}
+\def\institution#1{{\raggedright #1}}
+\def\address#1{\newline ${\ }$ \emph{#1}}
+\def\emaill#1{{\raggedright e-mail:\ {#1}}}
+\def\email#1{\newline {\raggedright ${\qquad\qquad}${#1}}}
+\def\dedication#1{\vspace{2mm}{\raggedright\qquad\emph{Dedicated {#1}}\vspace{2mm}}}
+\def\abstract#1{\vspace{2mm}{\raggedright\textbf{Abstract}. {#1}\vspace{1mm}}}
+\def\keywords#1{{\raggedright\emph{Keywords}: {#1}}}
+\def\Summary#1#2#3#4{\vspace{2mm}{\textbf{Reziumë}}\vspace{2mm}\newline{\textbf{#1}}\newline{\emph{#2}}\newline{#3}\newline{{\emph{Raktiniai þodþiai:\ }}#4}}
+\def\boldhline{\noalign{\global\arrayrulewidth.8pt}\hline\noalign{\global\arrayrulewidth.4pt}}
+% papildomi Paketai----------------------------------------------
+ \usepackage{color}
+% TITLE --------------------------------------------------
+\title{...}
+\author{...}
+\date{ }
+%literatûros sàraðas======================================================
+\begin{filecontents*}{x.bib}
+...
+\end{filecontents*}
+%======================================================
+
+%%% --------------------------------------------------------
+\begin{document}
+\maketitle
+\vspace{-0.5cm}
+{\small
+
+\institution{...}
+\address{...}
+
+\vspace{2mm} \emaill{...}
+
+%\dedication{}
+}
+
+\abstract{...}
+
+\keywords{...}
+% ----------------------------------------------------------
+
+%\nocite{*}
+\section*{Introduction}
+...
+
+\section{...}
+...
+
+% ----------------------------------------------------------
+\bibliographystyle{plain}
+\bibliography{x}
+\Summary{...}{...}{...}{...}
+\end{document}
