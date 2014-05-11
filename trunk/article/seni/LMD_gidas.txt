@@ -1,0 +1,405 @@
+\documentclass[10pt]{article}
+%Paketai----------------------------------------------
+ \usepackage[L7x]{fontenc}
+ \usepackage[lithuanian]{babel}
+ \usepackage{graphicx}
+ \usepackage{latexsym}
+ \usepackage{amssymb}
+ \usepackage{amsmath}
+ \newtheorem{thm}{Teorema}
+ \newtheorem{cor}[thm]{Iðvada}
+ \newtheorem{lem}[thm]{Lema}
+ \newtheorem{prop}[thm]{Teiginys}
+ \newtheorem{defn}[thm]{Apibrëþimas}
+ \newtheorem{rem}[thm]{Pastaba}
+ \def\institution#1{{\raggedright #1}}
+ \def\address#1{\newline ${\ }$ \emph{#1}}
+ \def\emaill#1{{\raggedright el.~paðtas:\ {#1}}}
+ \def\email#1{\newline {\raggedright ${\qquad\qquad}${#1}}}
+ \def\dedication#1{\vspace{2mm}{\raggedright\qquad\emph{Dedikuotas {#1}}\vspace{2mm}}}
+ \def\abstract#1{\vspace{2mm}{\raggedright\textbf{Santrauka}. {#1}\vspace{1mm}}}
+ \def\keywords#1{{\raggedright\emph{Raktiniai þodþiai}: {#1}}}
+ \def\Summary#1#2#3#4{\vspace{2mm}{\textbf{Summary}}\vspace{2mm}\newline{\textbf{#1}}\newline{\emph{#2}}\newline{#3}\newline{{\emph{Keywords:\ }}#4}}
+ \def\boldhline{\noalign{\global\arrayrulewidth.8pt}\hline\noalign{\global\arrayrulewidth.4pt}}
+% papildomi Paketai----------------------------------------------
+ \usepackage{color}
+% TITLE --------------------------------------------------
+\title{LMR teikiamas straipsnis\thanks{pavyzdys}}
+\author{Pirmas Autorius${}^{1,2}$, Antras Autorius${}^{1}$, Treèias Autorius${}^{2}$}
+\date{ }
+%literatûros sàraðas======================================================
+\begin{filecontents*}{x.bib}
+
+@BOOK{latex,
+   author = "Leslie Lamport",
+   title = "{\LaTeX:} {A} Document Preparation System",
+   publisher = "Addison-Wesley",
+   year = 1986
+}
+
+@BOOK{knygaLt,
+ author={P.P. Autorius and A. Autorius and T. Autorius},
+ title={ Knygos pavadinimas},
+ publisher={Leidykla},
+ address={Adresas},
+ year={2009}
+}
+
+@BOOK{knygaEn,
+ author={F.F. Author and S. Author and T. Author},
+ title={ Book title},
+ publisher={Publisher},
+ address={Address},
+ year={2009}
+}
+
+@ARTICLE{StraipsnisLt,
+ author={P.P. Autorius and A. Autorius and T. Autorius},
+ title={Straipsnio pavadinimas},
+ journal={Þurnalas},
+ volume={75},
+ number={1},
+ year={1995},
+ pages={15-31},
+ note={Pastaba}
+}
+
+@ARTICLE{StraipsnisEn,
+ author={F.F. Author and S. Author and T. Author},
+ title={Title of Article},
+ journal={Journal},
+ volume={75},
+ number={1},
+ year={1995},
+ pages={15-31},
+ note={Note}
+}
+
+@INPROCEEDINGS{inproceedingsEN,
+   author = {F.F. Author and S. Author and T. Author},
+   title = {Article in proceedings},
+   editor = {C. Editor and S. Editor and S.A. Editor},
+   booktitle = {Proc. of the  Intern. Conference, City, Country, 2009},
+   series = {Series},
+   pages = {1--15},
+   year = {2009},
+   address = {Address},
+   publisher = {Publisher}
+ }
+
+@INPROCEEDINGS{KonfLeidLT,
+   author = {P.P. Autorius and A. Autorius and T. Autorius},
+   title = {Straipsnis konferencijos darbuose},
+   editor = {C. Redaktorius and S. Redaktorius and S.A. Redaktorius},
+   booktitle = {Konferencijos darbai, Miestas, Ðalis, 2009},
+   series = {Serija},
+   pages = {1--15},
+   year = {2009},
+   address = {Adresas},
+   publisher = {Leidykla}
+ }
+\end{filecontents*}
+%======================================================
+
+%%% --------------------------------------------------------
+\begin{document}
+\maketitle
+\vspace{-0.5cm}
+{\small
+
+\institution{${}^{1}$Matematikos ir informatikos institutas}
+\address{Akademijos g. 4, LT-08663 Vilnius, Lietuva}
+
+\institution{${}^{2}$Vilniaus Universitetas, Matematikos ir informatikos fakultetas}
+\address{Naugarduko g. 24, LT-03225 Vilnius, Lietuva}
+
+\vspace{2mm}
+\emaill{pirmas.autorius@ktl.mii.lt; antras.autorius@ktl.mii.lt;}
+\email{trecias.autorius@ktl.mii.lt}
+
+%\dedication{}
+}
+
+\abstract{ Prieð straipsnio tekstà pateikiama darbo santrauka  ta kalba, kuria raðomas
+straipsnis.}
+
+\keywords{ raktiniai, þodþiai }
+% ----------------------------------------------------------
+
+%\nocite{*}
+\section*{Ávadas}
+Straipsniai teikiami surinkti \LaTeX formate naudojant standartiná \emph{Article} stiliø.
+Recenzavimui pakanka pateikti straipsnio elektroninæ versijà \textbf{PDF} formatu.
+Redkolegijos priimtà spaudai straipsná reikia pateikti elektroninëje versijoje
+(\textbf{\LaTeX} failas su atliktais autoriaus taisymais ir já atitinkantis \textbf{PDF}
+failas bei visø pavekslëliø  \textbf{EPS} failai).
+
+\section{Paveikslëliai ir lentelës}
+
+\subsection{Paveikslëliai}
+
+Visi brëþiniai pateikiami atskirai \textbf{EPS} formatu.
+
+\begin{figure}[t]
+\centering {
+\begin{minipage}[t]{3.7cm}
+{\includegraphics[ scale=0.45]{guide1.eps}}
+\caption{ 1 paveikslëlis.}\label{fig:d1a}
+\end{minipage}
+\
+\begin{minipage}[t]{3.7cm}
+{\includegraphics[ scale=0.45]{guide2.eps}}
+\caption{ 2 paveikslëlis.}\label{fig:d1b}
+\end{minipage}
+\
+\begin{minipage}[t]{3.7cm}
+{\includegraphics[ scale=0.45]{guide3.eps}}
+\caption{ 3 paveikslëlis.}\label{fig:d1c}
+\end{minipage}
+}
+\end{figure}
+
+\begin{figure}[t]
+\centering {
+\begin{minipage}[t]{4.1cm}
+{\includegraphics[ scale=0.5]{guide1.eps}}
+
+\centerline{a)}
+\end{minipage}
+\quad
+\begin{minipage}[t]{4.1cm}
+{\includegraphics[ scale=0.5]{guide2.eps}}
+
+\centerline{b)}
+\end{minipage}
+}
+\caption{ Du paveikslëliai.}\label{fig:d2}
+\end{figure}
+
+\begin{figure}[t]
+\centering {
+\begin{tabular}{ccc}
+{\includegraphics[ scale=0.38]{guide1.eps}}&
+{\includegraphics[ scale=0.38]{guide2.eps}}&
+{\includegraphics[ scale=0.38]{guide3.eps}}\\
+guide1.eps & guide2.eps & guide3.eps \\
+ & & \\
+{\includegraphics[ scale=0.38]{guide2.eps}}&
+{\includegraphics[ scale=0.38]{guide1.eps}}&
+{\includegraphics[ scale=0.38]{guide2.eps}}\\
+guide2.eps& guide1.eps & guide2.eps \\
+\end{tabular}
+\caption{ Ðeði paveikslëliai lentelëje. }\label{fig:d3}
+}
+\end{figure}
+
+
+\begin{figure}[t]
+\centering {
+\begin{minipage}[t]{3.6cm}
+{\includegraphics[ scale=0.45]{guide1.eps}}
+
+\centerline{1}
+\end{minipage}
+\quad
+\begin{minipage}[t]{3.6cm}
+{\includegraphics[ scale=0.45]{guide1.eps}}
+
+\centerline{2}
+\end{minipage}
+\quad
+\begin{minipage}[t]{3.6cm}
+{\includegraphics[ scale=0.45]{guide1.eps}}
+
+\centerline{3}
+\end{minipage}
+\caption{Ta pati figûra. }\label{fig:d5} }
+\end{figure}
+
+\begin{figure}[t]
+\centering {
+\begin{minipage}[t]{10cm}
+{\includegraphics[ scale=0.6]{guide4.eps}} \caption{Vienas paveikslëlis.}\label{fig:d1g}
+\end{minipage}
+}
+\end{figure}
+
+Paveikslëliams ádëti naudojama standartinë \LaTeX\ {\color{green}\verb!figure!}
+({\color{green}{\tt graphicx} paketas}) aplinka. Visiems EPS failams naudokite tà patá
+vardà, t.y. {\color{magenta}{\tt guide.tex, guide1.eps,..., guide4.eps}}. Ðio pavyzdþio
+paveikslëliø originalûs iðmatavimai:
+\begin{quote}
+\item[1)] {\color{magenta}{\tt guide1.eps}} --  8cm x 8cm,
+\item[2)] {\color{magenta}{\tt guide2.eps}} --  8cm x 8cm,
+\item[3)] {\color{magenta}{\tt guide3.eps}} --  8cm x 8cm,
+\item[4)] {\color{magenta}{\tt guide4.eps}} -- 16cm x 8cm.
+\end{quote}
+
+Pateikti pavyzdþiai:  1) trys atskiri paveikslëliai \ref{fig:d1a}~pav., \ref{fig:d1b}~pav.,\ref{fig:d1c}~pav.;
+ 2) 2 susieti paveikslëliai \ref{fig:d2}~pav.;
+ 3) paveikslëliai lentelëje \ref{fig:d3}~pav.; 4) tie patys paveikslëliai  \ref{fig:d5}~pav.;
+ 5) vienas didelis paveikslëlis  \ref{fig:d1g}~pav.
+
+
+
+Pastaba. Paveikslëliø failai priimami tik {\quotedblbase}encapsulated PostScript{\textquotedblleft} formatu
+{\color{magenta}{\tt *.EPS }}!
+
+\subsection{Lentelës}
+
+\begin{table}[b]
+\caption{Taip atrodo trijø stulpeliø paprasta lentelë.}\label{t1}
+ \centering
+ \tabcolsep=5pt
+ \vspace{2mm}
+\begin{tabular}{rrr}
+\boldhline
+&  $a$ & $b$ \\
+\hline
+$x$ & 1.12 & 0.11\\
+$y$ & 10.34 & 0.2\\
+\boldhline
+\end{tabular}
+\end{table}
+\begin{table}[t]
+\caption{Sudëtingesnës lentelës pavyzdys.}\label{t2}
+ \centering
+ \tabcolsep=5pt
+ \vspace{2mm}
+%\raggedright \tabcolsep=5pt
+\begin{tabular}{lcccccccccc}
+\boldhline %\\[-1pt]
+& \multicolumn{3}{c}{$f(x)$} && \multicolumn{3}{c}{$g(x)$}
+&& \multicolumn{2}{c}{Metodas} \\[2pt] %
+\cline{2-4}\cline{6-8}\cline{10-11}
+\multicolumn{11}{l}{}\\[-7pt]
+& $\infty$ & \d{3}2 & \d{1}1 && $\infty$ & \d{1}2 & \d{1}1
+&& Standartinis & Modifikuotas \\
+A & $\infty$ & 2105 & nëra &&  269  & 65  &
+ 22 && $\infty$ & 10 \\
+B & 46 & \d{2}46 & 47 && \d{2}5 & \d{1}5 & \d{1}5
+&& 23 & \d{1}5 \\
+\boldhline
+\end{tabular}
+\end{table}
+
+Naudojama standartinë \LaTeX\ {\color{green}\verb!tabular!} paketo aplinka.
+\ref{t1}~lentelë yra  paprasta, o \ref{t2} lentelë sudëtingesnë.
+
+\section{Formulës}
+
+Tekste formulës renkamos standartiðkai, pvz. tekste $a+b=x^2$;
+
+necituojamos
+\[{\sf e}^{{\sf i}\pi x}=-1;\]
+cituojamos
+\begin{equation}
+{\sf e}^{{\sf i}\pi x}=-1,\label{eq:2}
+\end{equation}
+prisilaikant standartiniø matematiniø formuliø rinkimo taisykliø.
+
+
+
+\section{Teiginiai ir apibrëþimai}
+
+\begin{thm}[Teoremos pavyzdys]\label{thm:1}
+Teoremos tekstas.
+\end{thm}
+
+\begin{lem}[Lemos pavyzdys]\label{lem:1}
+Lemos tekstas.
+\end{lem}
+
+\begin{cor}[Iðvados pavyzdys]\label{cor:1}
+Iðvados tekstas.
+\end{cor}
+
+\begin{defn}[Apibrëþimo pavyzdys]\label{defn:1}
+Apibrëþimo tekstas. \emph{Apibrëþiama sàvoka} raðoma kursyvu.
+\end{defn}
+
+\begin{rem}[Pastabos pavyzdys]\label{rem:1}
+Standartiðkai apibrëþtos definicijos: teorema (thm), lema (lem), iðvada (cor),
+apibrëþimas (defn), pastaba (rem).
+\end{rem}
+
+Jeigu Jums reikaligas kitas tipas, tuomet naudokite teiginio definicijà (prop) nurodydami
+tikrà pavadinimà.
+
+\begin{prop}[Algoritmas]\label{prop:1}
+Èia Algoritmo tekstas. Skliausteliuose paraðyta, kad ði dalis yra Algoritmas.
+\end{prop}
+
+\begin{rem}\label{rem:2}
+Standartiniame \emph{Article} stiliuje teiginio ar apibrëþimo numeris eina po teiginio
+{\quotedblbase}\textbf{\emph{Teorema 1}}{\textquotedblleft} (angl. variantas). Teikamas  á LMR þurnalà straipsnio
+variantas yra darbinis, galutiniame straipsnio variante lietuviðkuose straipsniuose bus
+{\quotedblbase}\textbf{\emph{1 teorema.}}{\textquotedblleft} pataisyta automatiðkai.
+\end{rem}
+
+\section{Citavimas}
+Literatûros ðaltiniai
+\cite{StraipsnisEn,inproceedingsEN,knygaEn,StraipsnisLt,knygaLt,KonfLeidLT,latex} renkami
+standartiniame \textbf{PLAIN} stiliuje straipsnio pradþioje. Transliuojant LaTeX ði
+informacija uþraðoma á failà {\color{red}x.bib}. Jeigu daromi kokie nors taisymai
+literatûros sàraðe, prieð transliuojant LaTeX-u, ði failà reikia paðalinti. Literatûros
+ðaltinius reikia bûtinai cituoti su {\color{red}\verb!cite!} komanda.
+
+\begin{rem}\label{rem:3}
+Nekreipkite dëmesio á tai, kad lietuviðkame straipsnyje literatûros saraðe sugeneruojami
+angliðki þodþiai. Galutiniame straipsnio variante tai bus pakeista. Autoriaus tikslas yra
+pilnai ir teisingai uþpildyti {\color{red}x.bib} dalá failo  pradþioje  savo literatûros
+sàraðo ðaltiniais, pasinaudojant ðiame faile pateiktais pavyzdþiais.
+\end{rem}
+
+\section{Ðablonai ir kalba}
+
+Ðablonai \LaTeX failas, ðis failas ir jo pdf pateikti keletu variantø:
+
+anglø kalba -- {\color{magenta}{\tt {\color{magenta}{\tt LMD{\textunderscore}en.tex}},
+{\color{magenta}{\tt LMD{\textunderscore}en.pdf}};
+
+lietuviø -- {\color{magenta}{\tt LMD{\textunderscore}gidas.tex}},
+LMD{\textunderscore}gidas.pdf}}, {\color{magenta}{\tt LMD{\textunderscore}lt.tex}},
+{\color{magenta}{\tt LMD{\textunderscore}lt.pdf}}.
+
+\section{\LaTeX failo transliavimas}
+
+Tarkime Jûsø originalaus failo vardas yra {\color{magenta}name.tex}
+
+Teisingai sukonfiguruotoje \TeX sistemoje (pvz. TeXLive ar MiXTeX) su tvarkingai
+ádiegtais lietuviðkais ðriftais jokiø papildomø failø nereikia.
+
+
+
+\begin{description}\item[]\begin{quote}
+%
+\item[1)] redaguojamas failas  {\color{magenta}name.tex};
+\item[2)] naikinamas {\color{magenta}x.bib};
+\item[3)] vykdoma komanda {\color{red}latex name.tex} .  Gaunamas failas {\color{magenta}x.bib};
+\item[4)] vykdoma komanda {\color{red}bibtex name} .     Gaunamas failas name.bbl;
+\item[5)] vykdoma komanda {\color{red}latex name.tex} .  Gaunamas failas {\color{magenta}name.aux};
+\item[6)] vykdoma komanda {\color{red}latex name.tex} .  Gaunamas failas {\color{magenta}name.dvi};
+\item[7)] vykdoma komanda {\color{red}dvips name.dvi} .  Gaunamas failas {\color{magenta}name.ps};
+\item[8)] {\color{magenta}name.ps} failas konvertuojamas á {\color{magenta}name.pdf};
+\item[9)] jei reikalinga gráþtama  á 1).
+\end{quote}\vspace{0.5ex}\end{description}
+%
+
+\section{Iðvados}
+Patartina teikiamà straipsná rinkti ðablone, kurá galima rasti Lietuvos matematikos
+rinkinio interneto puslapyje
+
+{\color{blue}{\tt{http://www.mii.lt/LMR/}}}
+
+Èia galima rasti ir \LaTeX failo rinkimo pavyzdþius. Autoriai pateikia visus savo failus
+per ðá internetiná puslapá.
+
+Galutinis straipsnio variantas bus maketuojamas pagal LMR stiliø.
+
+% ----------------------------------------------------------
+\bibliographystyle{plain}
+\bibliography{x}
+\Summary{LMR Paper Example}{F. Author, S. Author and T.Author}{Summary text is
+Abstract(Santraukos) translation.}{keywords}
+\end{document}
