@@ -1,0 +1,68 @@
+\documentclass[11pt]{beamer}
+\usetheme{Copenhagen}
+\usepackage[utf8x]{inputenc}
+\usepackage[lithuanian]{babel}
+\usepackage[L7x]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{easylist}
+
+\author{I.Grinis, F.Ivanauskas, G.Stepanauskas}
+\title{Kai kurie polivalentinių sąveikų aspektai}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+%\logo{} 
+\institute{VU MIF} 
+\date{2014 06 26} 
+\subject{Applied math} 
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Sąvokos}
+\begin{itemize}
+\item Aplinka -- metrinė erdvė $X$, kurioje vyksta tam tikri procesai.
+\item Ligandų kompleksas $\mbox{\textit{Lig}}$ -- sudėtinis objektas, kuris apibūdinamas $N_L$ elementais (taškais)   $l_i \in X, i=1,\cdots, N_L$.
+\item Receptorių  kompleksas $\mbox{\textit{Rec}}$ -- sudėtinis objektas, kuris apibūdinamas $N_R$ elementais (taškais) $ r_i \in X, i=1, \cdots, N_R$. 
+\item Laikas -- parametras, nuo kurio priklauso $\mbox{\textit{Lig}}$ ir $\mbox{\textit{Rec}}$. Paprastai žymimas $t>0$, $t \in \mathbb{R}$ arba $t$, $t \in \mathbb{Z}$.
+\item Ligandų ir receptorių kompleksai gali \textit{sąveikauti}.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Ligando kompleksas}
+\begin{itemize}
+\item Ligandų komplekso taškai charakterizuojami tarpusavyje poriniais atstumais.
+\item Ligandų komplekso energija $E_L$  -- funkcija nuo minėtų atstumų.
+    \begin{itemize}
+       \item Pvz.: $E_L = \sum\limits_{i,j=1,i<j}^{N_L} k_{ij}^L (d(l_i,l_j) - d_{ij}^0)^{2} $
+    \end{itemize}
+\item Postuluojama, kad jeigu kompleksas nesąveikauja su receptorių kompleksu, tai $E_L = 0$.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Receptorių kompleksas}
+\begin{itemize}
+\item Receptorių komplekso taškai taip pat charakterizuojami tarpusavyje poriniais atstumais.
+\item Receptorių komplekso energija $E_R$  -- funkcija nuo minėtų atstumų.
+    \begin{itemize}
+       \item Pvz.: $E_R = \sum\limits_{i,j=1,i<j}^{N_R} k_{ij}^R (d(l_i,l_j) - d_{ij}^0)^{2} $
+    \end{itemize}
+\item Postuluojama, kad jeigu kompleksas nesąveikauja su receptorių kompleksu, tai $E_R = 0$.
+\end{itemize}
+\end{frame}
+
+\end{document}
