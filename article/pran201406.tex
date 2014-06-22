@@ -46,7 +46,7 @@
 \item Ligandų komplekso taškai charakterizuojami tarpusavyje poriniais atstumais.
 \item Ligandų komplekso energija $E_L$  -- funkcija nuo minėtų atstumų.
     \begin{itemize}
-       \item Pvz.: $E_L = \sum\limits_{i,j=1,i<j}^{N_L} k_{ij}^L (d(l_i,l_j) - d_{ij}^0)^{2} $
+       \item Pvz.: $E_L = \sum\limits_{i,j=1,i<j}^{N_L} k_{ij}^L (d(l_i,l_j) - d_{ij}^L)^{2} $
     \end{itemize}
 \item Postuluojama, kad jeigu kompleksas nesąveikauja su receptorių kompleksu, tai $E_L = 0$.
 \end{itemize}
@@ -59,10 +59,72 @@
 \item Receptorių komplekso taškai taip pat charakterizuojami tarpusavyje poriniais atstumais.
 \item Receptorių komplekso energija $E_R$  -- funkcija nuo minėtų atstumų.
     \begin{itemize}
-       \item Pvz.: $E_R = \sum\limits_{i,j=1,i<j}^{N_R} k_{ij}^R (d(l_i,l_j) - d_{ij}^0)^{2} $
+       \item Pvz.: $E_R = \sum\limits_{i,j=1,i<j}^{N_R} k_{ij}^R (d(r_i,r_j) - d_{ij}^R)^{2} $
     \end{itemize}
 \item Postuluojama, kad jeigu kompleksas nesąveikauja su receptorių kompleksu, tai $E_R = 0$.
 \end{itemize}
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Receptorių ir ligandų sąveika }
+\begin{itemize}
+\item Nagrinėjant ligandų ir receptorių kompleksų evoliuciją, t.y. atitinkamų atstumų priklausomybę nuo laiko, 
+svarbu atsižvelgi į galimą jų \textit{sąveiką}, kuri apibūdinama atsirandančiais \textit{ryšiais} tarp atskirų ligandų ir receptorių.
+\item Receptorių ir ligando kompleksų taškai $r_i$ ir $l_j$ gali sudaryti \textit{ryšį}, jeigu  atstumas tarp jų 
+$d(r_i,l_j) \leqslant R$, kur $R$ -- tam tikras teigiamas realus skaičius. 
+\item Minėtas ryšis pasižymi tam tikra \textit{energija} $E_s$, kuri laikoma mažesne už nulį.
+\item Jeigu ligandų ir receptorių kompleksai  sąveikauja taip, kad tarp jų atsirado $K$ ryšių, tai bendra sąveikos energija
+yra $E = E_R + E_L + K \times E_s$
+\item Minėtas skaičius $K$ vadinamas kompleksų ryšio \textit{valentingumu}.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Receptorių ir ligandų sąveika }
+\begin{itemize}
+\item Nagrinėjant ligandų ir receptorių kompleksų evoliuciją, t.y. atitinkamų atstumų priklausomybę nuo laiko, 
+svarbu atsižvelgi į galimą jų \textit{sąveiką}, kuri apibūdinama atsirandančiais \textit{ryšiais} tarp atskirų ligandų ir receptorių.
+\item Receptorių ir ligando kompleksų taškai $r_i$ ir $l_j$ gali sudaryti \textit{ryšį}, jeigu  atstumas tarp jų 
+$d(r_i,l_j) \leqslant R$, kur $R$ -- tam tikras teigiamas realus skaičius. 
+\item Minėtas ryšis pasižymi tam tikra \textit{energija} $E_s$, kuri laikoma mažesne už nulį.
+\item Jeigu ligandų ir receptorių kompleksai  sąveikauja taip, kad tarp jų atsirado $K$ ryšių, tai bendra sąveikos energija
+yra $E = E_R + E_L + K \times E_s$
+\item Minėtas skaičius $K$ vadinamas kompleksų ryšio \textit{valentingumu}.
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Receptorių ir ligandų sąveika }
+\begin{itemize}
+\item Nagrinėjant ligandų ir receptorių kompleksų evoliuciją, t.y. atitinkamų atstumų priklausomybę nuo laiko, 
+svarbu atsižvelgi į galimą jų \textit{sąveiką}, kuri apibūdinama atsirandančiais \textit{ryšiais} tarp atskirų ligandų ir receptorių.
+\item Receptorių ir ligando kompleksų taškai $r_i$ ir $l_j$ gali sudaryti \textit{ryšį}, jeigu  atstumas tarp jų 
+$d(r_i,l_j) \leqslant R$, kur $R$ -- tam tikras teigiamas realus skaičius. 
+\item Minėtas ryšis pasižymi tam tikra \textit{energija} $E_s$, kuri laikoma mažesne už nulį.
+\item Jeigu ligandų ir receptorių kompleksai  sąveikauja taip, kad tarp jų atsirado $K$ ryšių, tai bendra sąveikos energija
+yra $E = E_R + E_L + K \times E_s$
+\item Minėtas skaičius $K$ vadinamas kompleksų ryšio \textit{valentingumu}.
+\end{itemize}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Uždaviniai}
+\begin{itemize}
+\item Duotiems \textit{Lig} ir \textit{Rec} kompleksams ir žinomiems atstumams $d(r_i, l_j)$ rasti valentingumą, kuriam esant bendra sąveikos energija minimali.
+
+\end{itemize}
+\end{frame}
+
+
+
 
 \end{document}
