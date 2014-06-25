@@ -53,9 +53,14 @@ vector<double> getRNDC01(unsigned int size){ // size >= 1, i.e. number of inner 
    double h = 1.0/(size+1);
    vector<double> values;
    values.push_back( rnd(-1,1) );
-   for(int i=0; i < size; i++)
-         values.push_back( rnd(-1,1) );
-   values.push_back( rnd(-1,1) );
+   for(int i=0; i < (size+1); i++){
+         //double dy = sqrt(h) * rnd(-1,1);
+         double dy = gsl_ran_gaussian (r, sqrt(h));
+         if (dy>1) dy = 1 - dy;
+         else if (dy<-1) dy = -1 + dy;
+         values.push_back( dy );
+   }
+   //values.push_back( rnd(-1,1) );
    return values;
 
 }
@@ -112,7 +117,7 @@ double distL2(vector<double>& a, vector<double>& b){ // equal sizes
 }
 
 ///////////////////////////////////////////////////////////////////
-double minDist(vector<double>& a, vector<double>& b){ // equal sizes
+double funcMin(vector<double>& a, vector<double>& b){ // equal sizes
 
      int sz = a.size();
      double mn = abs(a[0] - b[0]);
@@ -322,15 +327,17 @@ int main(void)
   srand (time(NULL));
   setupRND( rand() );
 //  setupRND( 11 );
-  for (int sz=32; sz<=1024;sz<<=1){
-      cout << "size=" << sz << endl;
-      for(int i=0; i<20; i++){
+  for(int i=1; i<=100; i++){
+     double R =  i * 0.01;
+     cout << R;
+     for (int sz=32; sz <= 2<<12; sz = sz * 3 / 2){
+      //cout << "size=" << sz << endl;
+      //     for(int i=0; i<20; i++){
          double alpha = 0.5;
          int size = sz;
          int ligSize = 16;
          double eLigRec = 1;
          //double R = 0.5 + i * 0.01;
-         double R =  i * 0.2;
 
          double kLigLig = 1E2;
 
@@ -338,7 +345,7 @@ int main(void)
 
          double (*dF)(vector<double>& a, vector<double>& b);
          //dF = distL2;
-         dF = distSup;
+         dF = funcMin;
 
          InteractionModel  model( size, ligSize, kLigLig, eLigRec, R, ds, dF);
       //  cout << "Created " << endl;
@@ -350,8 +357,9 @@ int main(void)
          int va = model.energyByNearestReceptor();
 
 
-         cout << R << " " << va << endl;
+         cout << " " << va;
       }
+      cout << endl;
   }
 
   destroyRND();
