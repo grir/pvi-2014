@@ -1,0 +1,1 @@
+﻿Mes nagrinėjame kai kuriuos polivalentinių sąveikų modeliavimo panaudojant metrinės erdvės terminologiją aspektus. Atlikti statistiniai skaičiavimai parodo, kad kai kurie erdvės C[0,1] poaibiai gali  potencialiai reprezentuoti tam  tikras realias molekulinės biologijos sistemų objektus. 
