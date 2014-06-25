@@ -12,7 +12,7 @@
 
 using namespace std;
 
-#define MAX_SIZE 2<<14 
+#define MAX_SIZE 2<<14
 
 /////////////////////////////////////
 // Global:
@@ -21,23 +21,23 @@ gsl_rng * r;
 /////////////////////////////////////////////
 void setupRND(int seed){
    const gsl_rng_type * T;
-   
+
    gsl_rng_env_setup();
    T = gsl_rng_default;
    r = gsl_rng_alloc (T);
-   gsl_rng_set (r, seed); 
+   gsl_rng_set (r, seed);
 
 }
 /////////////////////////////////////////////
 double rnd(){
 
-   return gsl_rng_uniform (r); 
+   return gsl_rng_uniform (r);
 
 }
 /////////////////////////////////////////////
 double rnd(double a, double b){
 
-   return gsl_rng_uniform (r) * (b - a) + a; 
+   return gsl_rng_uniform (r) * (b - a) + a;
 
 }
 
@@ -66,9 +66,9 @@ double distSup(vector<double>& a, vector<double>& b){ // equal sizes
      int sz = a.size();
      double mx = 0;
      for (int i=0; i<sz;i++) {
-        double diff = abs(a[i] - b[i]); 
+        double diff = abs(a[i] - b[i]);
         if (mx < diff)  mx = diff;
-     }  
+     }
 
      return mx;
 }
@@ -77,7 +77,7 @@ double distSup(vector<double>& a, vector<double>& b){ // equal sizes
 void getLine(double x1, double y1, double x2, double y2, double& a, double& b){
 
     a = (y2 - y1)/(x2 - x1);
-    b = y1 - a * x1;   
+    b = y1 - a * x1;
 
 }
 
@@ -85,7 +85,7 @@ void getLine(double x1, double y1, double x2, double y2, double& a, double& b){
 double integral(double x1, double x2, double a, double b){
 
     double i1 = a * a * ( x2 * x2 * x2 -  x1 * x1 * x1) / 3;
-    double i2 = a * b * x2 * x2 - a * b * x1 * x1;  
+    double i2 = a * b * x2 * x2 - a * b * x1 * x1;
     double i3 = b * b * (x2 - x1);
     return i1 + i2 + i3;
 
@@ -96,7 +96,7 @@ double distL2(vector<double>& a, vector<double>& b){ // equal sizes
 
      int sz = a.size();
      double h = 1.0/sz;
-     sz--;  
+     sz--;
      double mx = 0;
      double sum = 0.0;
      for (int i=0; i<sz;i++) {
@@ -106,13 +106,27 @@ double distL2(vector<double>& a, vector<double>& b){ // equal sizes
         a12 = a2 - a1;
         b12 = b2 - b1;
            sum += integral(i*h, (i+1)*h, a12, b12);
-     }  
+     }
 
      return sqrt(sum);
 }
 
 ///////////////////////////////////////////////////////////////////
-double adjustDistance(vector<double>& rec, vector< vector<double> >& pts, 
+double minDist(vector<double>& a, vector<double>& b){ // equal sizes
+
+     int sz = a.size();
+     double mn = abs(a[0] - b[0]);
+     for (int i = 0; i < sz; i++) {
+        double mn1 = abs(a[i] - b[i]);
+        if (mn1 < mn)  mn = mn1;
+     }
+
+     return mn;
+}
+
+
+///////////////////////////////////////////////////////////////////
+double adjustDistance(vector<double>& rec, vector< vector<double> >& pts,
                       vector<int>& lig, int ligNr, double ds, double kLigLig){ // equal sizes
 
   //   cout << "Adjusting " << ligNr << endl;
@@ -131,17 +145,17 @@ double adjustDistance(vector<double>& rec, vector< vector<double> >& pts,
 
         pts[  ligNr  ][ i ] = beta * pts[  ligNr ][ i ] + alpha * rec[ i ];
 
-     }  
+     }
 
  //    cout << "136" << endl;
      for(int i=0; i<sz;i++)
         dafter[ i ] = distL2(pts[ lig[i] ], pts[ ligNr ]);
 
      for(int i=0; i<sz;i++){
-        double delta = (dafter[i]-dnow[i]);   
+        double delta = (dafter[i]-dnow[i]);
         deltaEnergy += kLigLig * delta * delta / 2;
-     }  
-  //  cout << deltaEnergy << endl; 
+     }
+  //  cout << deltaEnergy << endl;
      return deltaEnergy;
 }
 
@@ -150,7 +164,7 @@ double adjustDistance(vector<double>& rec, vector< vector<double> >& pts,
 
 /*
 class Lig {
-   public:  
+   public:
       vector< vector<double> > pts;
       int valency;
       int dim;
@@ -158,8 +172,8 @@ class Lig {
       double radius;
       vector<double> d0;
       double Energy();
-      
-     
+
+
 
 
 }
@@ -173,20 +187,24 @@ class InteractionModel {
       int size;
       vector<int> lig;
       int ligSize;
-      double kLigLig;         // "elastic constant"  	
+      double kLigLig;         // "elastic constant"
       double eLigRec;         // univalent energy
       double R;               // interaction radius
       double ds;              // bond distance
-      void recSelection();    // randomly select ligSize ligands 
-      int energyByNearestReceptor();        // 
+      double (*distanceFunc)(vector<double>& a, vector<double>& b);
+
+      void recSelection();    // randomly select ligSize ligands
+      int energyByNearestReceptor();        //
    //   double energyByOptimalConf();            //
-      int valency; 
-      InteractionModel(int size, int ligSize, 
-                      double kLigLig, double eLigRec, 
-                      double R, double ds); 
+      int valency;
+      InteractionModel(int size, int ligSize,
+                      double kLigLig, double eLigRec,
+                      double R, double ds,
+                      double (*distanceFunc)(vector<double>& a, vector<double>& b)
+                      );
 
       void printLigs();
-      
+
 };
 
 ///////
@@ -194,35 +212,39 @@ void InteractionModel::printLigs(){
      for(int i = 0; i < ligSize; i++)
         cout << lig[ i ] << endl;
 
-} 
+}
 
 ///////
-InteractionModel::InteractionModel(int size, int ligSize, 
-                      double kLigLig, double eLigRec, 
-                      double R, double ds){
+InteractionModel::InteractionModel(int size, int ligSize,
+                      double kLigLig, double eLigRec,
+                      double R, double ds,
+                      double (*distanceFunc)(vector<double>& a, vector<double>& b)
+                      ){
 
      this->size = size;
      this->ligSize = ligSize;
      this->kLigLig = kLigLig;
      this->eLigRec = eLigRec;
      this->R = R;
-     this->ds = ds; 
+     this->ds = ds;
+     this->distanceFunc = distanceFunc;
+
      this->valency = 0;
      // create points
      for(int i = 0; i < size; i++){
         vector<double> a = getRNDC01(100);
         this->pts.push_back(a);
      }
-} 
- 
+}
+
 ///////
 void InteractionModel::recSelection(){
      int nums[size];
      int ligs[ligSize];
 
      //remove all old elements
-     lig.clear();                        
-     
+     lig.clear();
+
      for(int i = 0; i < size; i++)
         nums[ i ] = i;
 
@@ -232,7 +254,7 @@ void InteractionModel::recSelection(){
         lig.push_back(ligs[i]);
      }
 
-}      
+}
 
 ///////
 int InteractionModel::energyByNearestReceptor(){
@@ -242,56 +264,56 @@ int InteractionModel::energyByNearestReceptor(){
      unusedPts.set();                     //at start all pts are unused
 
      double energy = 0.0;
-     
+
      for(int i = 0; i < ligSize; i++){
-        unusedPts.set(lig[ i ],0);        
+        unusedPts.set(lig[ i ],0);
         for(int j = 0; j < ligSize; j++) {
             dL[i][j] = distL2(pts[lig[i]],pts[lig[j]]);
             dL[j][i] = dL[i][j];
         }
-     }  
-     
-     // for each ligand/receptor, we find nearest  
+     }
+
+     // for each ligand/receptor, we find nearest
      int valency = 0;
      bitset<MAX_SIZE>  unusedLigs;
      unusedLigs.set();                     //at start all Ligs are unused
-     
+
      for(int i = 0; i < ligSize; i++){
-        if (energy > 1E-6) break;         // there is no 
+        if (energy > 1E-6) break;         // there is no
         double mindist = 2 * size;
         int ligNr = -1;
         int recNr = -1;
         for(int j = 0; j < ligSize; j++){
-           if (unusedLigs[lig[ j ]] == 1) { 
+           if (unusedLigs[lig[ j ]] == 1) {
               for(int k = 0; k < size; k++) {
-                  double d = distL2(pts[lig[j]],pts[k]);
-                  if ( (unusedPts[k] == 1) && ( d < R )){  
+                  double d = distanceFunc(pts[lig[j]],pts[k]);
+                  if ( (unusedPts[k] == 1) && ( d < R )){
                      if ( d <= mindist ) {
                         mindist = d;
                         ligNr =  j;
                         recNr = k;
                      //         cout << lig[ligNr] << " " << recNr << endl;
 
-                     }  
+                     }
                   }
               }
            }
            else continue;
        }
        if (ligNr == -1) break;
-       
-      
-       
-       energy = energy - eLigRec + adjustDistance(pts[recNr], 
-                         pts, lig, lig[ligNr], ds, kLigLig); 
+
+
+
+       energy = energy - eLigRec + adjustDistance(pts[recNr],
+                         pts, lig, lig[ligNr], ds, kLigLig);
      //  cout << "After adjusting" << endl;
        unusedLigs[lig[ligNr]] = 0;
-   
+
        if (energy <= 1E-6) valency++;
 
     }
     return  valency;
-} 
+}
 
 
 
@@ -300,31 +322,39 @@ int main(void)
   srand (time(NULL));
   setupRND( rand() );
 //  setupRND( 11 );
+  for (int sz=32; sz<=1024;sz<<=1){
+      cout << "size=" << sz << endl;
+      for(int i=0; i<20; i++){
+         double alpha = 0.5;
+         int size = sz;
+         int ligSize = 16;
+         double eLigRec = 1;
+         //double R = 0.5 + i * 0.01;
+         double R =  i * 0.2;
 
-  for(int i=0; i<20; i++){
-     double alpha = 0.5;  
-     int size = 128;
-     int ligSize = 16; 
-     double eLigRec = 1; 
-     double R = 0.5 + i * 0.01;
-     double kLigLig = 1E2;
-  
-     double ds = R * alpha; 
- 
-     InteractionModel  model( size, ligSize, kLigLig, eLigRec, R, ds); 
-  //  cout << "Created " << endl; 
-     model.recSelection();
-  //model.printLigs(); 
+         double kLigLig = 1E2;
 
-  //cout << "Ligands selected " << endl; 
+         double ds = R * alpha;
 
-     int va = model.energyByNearestReceptor();
-  
+         double (*dF)(vector<double>& a, vector<double>& b);
+         //dF = distL2;
+         dF = distSup;
 
-     cout << R << " " << va << endl;
+         InteractionModel  model( size, ligSize, kLigLig, eLigRec, R, ds, dF);
+      //  cout << "Created " << endl;
+         model.recSelection();
+      //model.printLigs();
+
+      //cout << "Ligands selected " << endl;
+
+         int va = model.energyByNearestReceptor();
+
+
+         cout << R << " " << va << endl;
+      }
   }
 
-  destroyRND(); 
- 
+  destroyRND();
+
   return 0;
 }
